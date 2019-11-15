@@ -11,12 +11,13 @@ const app = express();
 
 const morganOption = (NODE_ENV === 'production');
 const CatRouter = require('./cat/cat-router');
+const DogRouter = require('./dog/dog-router');
 
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
-// app.use('/api/dog');
+app.use('/api/dog', DogRouter);
 app.use('/api/cat', CatRouter);
 
 app.use(function errorHandler(error, req, res, next) {
