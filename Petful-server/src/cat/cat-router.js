@@ -1,12 +1,18 @@
 const express = require('express');
-const xss = require('xss'); //remove when services done
+const catsService = require('./cat-service');
+
 
 const catRouter = express.Router();
 
 catRouter
   .route('/')
   .get((req, res, next) => {
-    res.send('Cat Get!');
-  });
+    catsService.getCats(req.app.get('db'))
+      .then(cats => res.json(cats))
+      .catch(next);
+  })
+  .delete((req, res, next) => {
+    res.send('Cat Delete!');
+  })
 
 module.exports = catRouter;

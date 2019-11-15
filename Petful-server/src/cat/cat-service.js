@@ -1,10 +1,11 @@
 const xss = require('xss');
 
-const CatService = {
+const catsService = {
   getCats(db) {
     return db
-    //TODO model database, bring in the info from there at this point.
+      .from('cats')
+      .select('*')
   },
 };
 
-module.exports = UnitsService;
+module.exports = catsService;

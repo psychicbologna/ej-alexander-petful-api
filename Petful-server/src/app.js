@@ -10,15 +10,15 @@ const express = require('express'),
 const app = express();
 
 const morganOption = (NODE_ENV === 'production');
-const CatRouter = require('./cat/cat-router');
-const DogRouter = require('./dog/dog-router');
+const catRouter = require('./cat/cat-router');
+const dogRouter = require('./dog/dog-router');
 
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
-app.use('/api/dog', DogRouter);
-app.use('/api/cat', CatRouter);
+app.use('/api/dog', dogRouter);
+app.use('/api/cat', catRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
